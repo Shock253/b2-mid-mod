@@ -8,13 +8,13 @@ RSpec.describe "As a visitor,", type: :feature do
       amusement_park = AmusementPark.create(name: "Hershey Park",
                                             admission_price: "50.00")
 
-      Ride.create(                          name: "Lightning Racer",
+      amusement_park.rides.create(          name: "Lightning Racer",
                                             thrill_rating: 10)
 
-      Ride.create(                          name: "Storm Runner",
+      amusement_park.rides.create(          name: "Storm Runner",
                                             thrill_rating: 5)
-                                            
-      Ride.create(                          name: "The Great Bear",
+
+      amusement_park.rides.create(          name: "The Great Bear",
                                             thrill_rating: 2)
 
       visit "/amusement_parks/#{amusement_park.id}"
