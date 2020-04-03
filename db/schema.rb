@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200403151821) do
+ActiveRecord::Schema.define(version: 20200403153623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mechanic_rides", force: :cascade do |t|
+    t.bigint "mechanic_id"
+    t.bigint "ride_id"
+    t.index ["mechanic_id"], name: "index_mechanic_rides_on_mechanic_id"
+    t.index ["ride_id"], name: "index_mechanic_rides_on_ride_id"
+  end
 
   create_table "mechanics", force: :cascade do |t|
     t.string "name"
@@ -22,4 +29,11 @@ ActiveRecord::Schema.define(version: 20200403151821) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rides", force: :cascade do |t|
+    t.string "name"
+    t.integer "thrill_rating"
+  end
+
+  add_foreign_key "mechanic_rides", "mechanics"
+  add_foreign_key "mechanic_rides", "rides"
 end
