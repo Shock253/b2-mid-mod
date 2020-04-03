@@ -8,7 +8,10 @@ class MechanicsController < ApplicationController
   end
 
   def update
-    MechanicRide.create(mechanic_id: params[:id], ride_id: params[:ride_id])
+    mechanic_ride = MechanicRide.create(mechanic_id: params[:id], ride_id: params[:ride_id])
+    if !mechanic_ride.save
+      flash[:notice] = "Could not find ride of given ID"
+    end
     redirect_to "/mechanics/#{params[:id]}"
   end
 end
