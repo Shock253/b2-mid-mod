@@ -42,6 +42,11 @@ RSpec.describe "As a user,", type: :feature do
       expect(page).to have_content("The Kiss Raise")
 
       fill_in "Ride", with: "#{ride_4.id}"
+
+      click_button "Submit"
+
+      expect(page).to have_current_path("/mechanics/#{mechanic.id}")
+      expect(page).to have_content("Lightning Racer")
     end
   end
 end
